@@ -16,7 +16,11 @@ class BMICalculator extends StatelessWidget {
       initialRoute: kRoutes[RoutesEnum.home],
       routes: {
         kRoutes[RoutesEnum.home]: (context) => InputPage(),
-        kRoutes[RoutesEnum.results]: (context) => ResultsPage()
+        kRoutes[RoutesEnum.results]: (context) => ResultsPage(
+              bmi: null,
+              bmiInterpretation: null,
+              bmiResult: null,
+            )
       },
     );
   }

@@ -1,10 +1,12 @@
 import 'package:bmi_calculator/age_tracker_card.dart';
 import 'package:bmi_calculator/height_slider_card.dart';
+import 'package:bmi_calculator/results_page.dart';
 import 'package:bmi_calculator/weight_tracker_card.dart';
 import 'package:flutter/material.dart';
 import 'constants.dart';
 import 'gender_card.dart';
 import 'reusable_card.dart';
+import 'calculator_brian.dart';
 
 class InputPage extends StatefulWidget {
   @override
@@ -147,7 +149,18 @@ class _InputPageState extends State<InputPage> {
             ),
             onPressed: () {
               print('gender:$gender, age:$age, weight:$weight, height:$height');
-              Navigator.pushNamed(context, '/results');
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ResultsPage(
+                    bmi: calc.calculateBMI(),
+                    bmiResult: calc.getResult(),
+                    bmiInterpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
             },
           ),
         ],
